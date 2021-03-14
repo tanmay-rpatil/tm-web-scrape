@@ -27,13 +27,14 @@ def reqeuest_url(base,param):
 		print("success: ",r.status_code)
 		return r
 
-def download_csv(req):
-	csv_file = open('downloaded.csv', 'wb')
+def download_csv(req, category):
+	name = 'download_'+str(category)+'.csv'
+	csv_file = open(name, 'wb')
 	csv_file.write(req.content)
 	csv_file.close()
 
 # process the url to get a param
-def proc(tmp_soup):
+def proc(tmp_soup, down_url, category):
 	tag = tmp_soup.find(id='cpContent_TopControls1_ddlExport')
 	attr = tag.get('onchange')
 	# print(attr)
@@ -46,10 +47,10 @@ def proc(tmp_soup):
 		if (endindex!=-1):
 			req = attr[startindex:endindex]
 			print(req)
-			down_req = reqeuest_url(downurl,req)
+			down_req = reqeuest_url(down_url,req)
 			if (reqeuest_url!=0):
 				print('trying download')
-				download_csv(down_req)
+				download_csv(down_req, category)
 
 
 		else:
@@ -59,13 +60,14 @@ def proc(tmp_soup):
 
 # main code 
 # get req
-all = reqeuest_url(baseurl,distnum)
+
+dist_req = reqeuest_url(baseurl,distnum)
 
 # if get req is succesful
-if all != 0: 
+if dist_req != 0: 
 	# print(all.headers)
-	soup = BeautifulSoup(all.text, 'lxml') #getting all the html content
+	soup = BeautifulSoup(dist_req.text, 'lxml') #getting all the html content
 	# look for the csv export tag
 	# id = "cpContent_TopControls1_ddlExport"
-	proc(soup)
+	proc(soup, downurl, "dist")
 	

@@ -1,5 +1,6 @@
 import requests, csv
 from bs4 import BeautifulSoup
+# script to fill a csv files with valid html description on club, district etc ... levels
 
 #global vars
 h = {'user-agent': "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:85.0) Gecko/20100101 Firefox/85.0"}
