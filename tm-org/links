@@ -1,0 +1,21 @@
+<select name="ctl00$cpContent$TopControls1$ddlExport" id="cpContent_TopControls1_ddlExport" class="ddl" onchange="dll_onchange(this.value,'districtperformance~98~3/31/2021~~2020-2021', this)">
+	<option value="Export">Export</option>
+	<option value="CSV">CSV</option>
+
+</select>
+
+
+Download link - 
+http://dashboards.toastmasters.org/export.aspx?type=CSV&report=districtperformance~98~3/31/2021~~2020-2021
+
+
+webpage - 
+
+Dist
+http://dashboards.toastmasters.org/District.aspx?id=98
+
+Div/area
+http://dashboards.toastmasters.org/Division.aspx?id=98
+
+Club 
+http://dashboards.toastmasters.org/Club.aspx?id=98

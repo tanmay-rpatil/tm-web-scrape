@@ -1,0 +1,8 @@
+
+# folders to ignore
+env/
+.vscode/
+
+# files to ignore 
+*.csv
+*.html
