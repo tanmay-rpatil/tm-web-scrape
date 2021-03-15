@@ -1,21 +1,30 @@
-<select name="ctl00$cpContent$TopControls1$ddlExport" id="cpContent_TopControls1_ddlExport" class="ddl" onchange="dll_onchange(this.value,'districtperformance~98~3/31/2021~~2020-2021', this)">
+TODO 
+	6	Distinguished Goals Needed for District 98 -- "To Do"
+	https://reports2.toastmasters.org/ToDo.cgi?dist=98
+	All information needs to be put into text below selection .. but how
+	
+	7	Daily report changes for District 98 as of Sat Jan 16 10:13:43 2021
+		https://reports2.toastmasters.org/D98/D98-2021-01-16.html
+		
+	8	https://reports2.toastmasters.org/PrezExt20.cgi
+		search district 98 nad put ranking , total count and date in csv file
+		Districts with highest percent of clubs with 20+ members’
+		Districts with highest net club growth
+
+
+
+
+DONE-
+	Download link - 
+	http://dashboards.toastmasters.org/export.aspx?type=CSV&report=districtperformance~98~3/31/2021~~2020-2021
+	webpage - 
+	Dist
+	http://dashboards.toastmasters.org/District.aspx?id=98
+	Div/area
+	http://dashboards.toastmasters.org/Division.aspx?id=98
+	Club 
+	http://dashboards.toastmasters.org/Club.aspx?id=98
+	<select name="ctl00$cpContent$TopControls1$ddlExport" id="cpContent_TopControls1_ddlExport" class="ddl" onchange="dll_onchange(this.value,'districtperformance~98~3/31/2021~~2020-2021', this)">
 	<option value="Export">Export</option>
 	<option value="CSV">CSV</option>
-
-</select>
-
-
-Download link - 
-http://dashboards.toastmasters.org/export.aspx?type=CSV&report=districtperformance~98~3/31/2021~~2020-2021
-
-
-webpage - 
-
-Dist
-http://dashboards.toastmasters.org/District.aspx?id=98
-
-Div/area
-http://dashboards.toastmasters.org/Division.aspx?id=98
-
-Club 
-http://dashboards.toastmasters.org/Club.aspx?id=98
+	</select>
