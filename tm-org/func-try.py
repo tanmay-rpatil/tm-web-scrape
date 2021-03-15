@@ -1,15 +1,13 @@
 #scrape tm.org for 3 csvs mentioned in links
-import requests, csv
+import requests
 from bs4 import BeautifulSoup
 # script to fill download CSV files as needed
 # remeber to activate venv when developing "source ./env/bin/activate"
 
 #global vars
-h = {'user-agent': "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:85.0) Gecko/20100101 Firefox/85.0"} # headers to make the req work
-baseurl = "http://dashboards.toastmasters.org/Division.aspx?id=" # web page to get params for downlaod
-downurl = "http://dashboards.toastmasters.org/export.aspx?type=CSV&report=" # base link for download 
 distnum = 98
-
+downurl = "http://dashboards.toastmasters.org/export.aspx?type=CSV&report=" # base link for download 
+h = {'user-agent': "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:85.0) Gecko/20100101 Firefox/85.0"} # headers to make the req work
 #get data for district page given the int district number
 def reqeuest_url(base,param):
 	print("getting the page")
@@ -59,10 +57,11 @@ def proc(tmp_soup, down_url, category):
 		print('err tag conetents maybe wrong')	
 
 # main code 
+
+baseurl = "http://dashboards.toastmasters.org/District.aspx?id=" # web page to get params for downlaod
 # get req
 
 dist_req = reqeuest_url(baseurl,distnum)
-
 # if get req is succesful
 if dist_req != 0: 
 	# print(all.headers)
@@ -71,3 +70,16 @@ if dist_req != 0:
 	# id = "cpContent_TopControls1_ddlExport"
 	proc(soup, downurl, "dist")
 	
+# same with division now
+baseurl = "http://dashboards.toastmasters.org/Division.aspx?id=" # web page to get params for downlaod
+dist_req = reqeuest_url(baseurl,distnum)
+if dist_req != 0: 
+	soup = BeautifulSoup(dist_req.text, 'lxml')
+	proc(soup, downurl, "div")
+
+# same with club
+baseurl = "http://dashboards.toastmasters.org/Club.aspx?id=" # web page to get params for downlaod
+dist_req = reqeuest_url(baseurl,distnum)
+if dist_req != 0: 
+	soup = BeautifulSoup(dist_req.text, 'lxml')
+	proc(soup, downurl, "club")
