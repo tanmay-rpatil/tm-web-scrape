@@ -27,7 +27,6 @@ def reqeuest_url(base):
 # save the html table into a csv file
 def table_to_csv(table_soup, fname):
 	fname = fname + ".csv"
-	
 	list_of_rows = []
 	for row in table_soup.findAll("tr"):
 		list_of_cells = []
@@ -47,6 +46,23 @@ def proc(tmp_soup):
 	for i in range(len(tables)):
 		if(i>1):
 			table_to_csv(tables[i],name_list[i])
+		if(i==0): #the special case to deal with
+			print("filler")
+			table_soup=tables[i]
+			list_of_rows = []
+			for row in table_soup.findAll("tr"):
+				list_of_cells = []
+				for cell in row.findAll(["th","td"]):
+					text = (cell.text).strip()
+					if(not text):
+						continue
+					else:
+						list_of_cells.append(text)
+				list_of_rows.append(list_of_cells)
+			with open("t1.csv","w") as op_file:
+				writer = csv.writer(op_file)
+				for row in list_of_rows:
+					writer.writerow(row)
 # main code 
 
 # get req
