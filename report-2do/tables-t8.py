@@ -1,5 +1,5 @@
 #scrape reports2.toastmasters.org for 2 tables into CSV
-import requests
+import requests,csv
 from bs4 import BeautifulSoup
 # script to fill CSV files as needed
 # remeber to activate venv when developing "source ./env/bin/activate"
@@ -21,17 +21,31 @@ def reqeuest_url(base):
 		print("success: ",r.status_code)
 		return r
 
+# save the html table into a csv file
+def table_to_csv(table_soup, fname):
+	fname = fname + ".csv"
+	
+	list_of_rows = []
+	for row in table_soup.findAll("tr"):
+		list_of_cells = []
+		for cell in row.findAll(["th","td"]):
+			text = cell.text
+			list_of_cells.append(text.strip())
+		list_of_rows.append(list_of_cells)
+	with open(fname,"w") as op_file:
+		writer = csv.writer(op_file)
+		for row in list_of_rows:
+			writer.writerow(row)
 
 # process the url to get a param
 def proc(tmp_soup):
 	table1 = (tmp_soup.find_all("table"))[1]
 	table2 = (tmp_soup.find_all("table"))[2]
-	with open("tables-t8-table1.html","w") as f:
-		print(table1)
-		f.write(table1.prettify())
+	table_to_csv(table1,"20_plus_members_ranking")
+	table_to_csv(table2,"club_growth_ranking")
+	
 
 # main code 
-
 
 # get req
 dist_req = reqeuest_url(baseurl)
