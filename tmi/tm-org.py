@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup
 distnum = 98
 downurl = "http://dashboards.toastmasters.org/export.aspx?type=CSV&report=" # base link for download 
 h = {'user-agent': "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:85.0) Gecko/20100101 Firefox/85.0"} # headers to make the req work
+
 #get data for district page given the int district number
 def reqeuest_url(base,param):
 	print("getting the page")
@@ -26,7 +27,7 @@ def reqeuest_url(base,param):
 		return r
 
 def download_csv(req, category):
-	name = 'download_'+str(category)+'.csv'
+	name = str(category)+ '_Performace.csv'
 	csv_file = open(name, 'wb')
 	csv_file.write(req.content)
 	csv_file.close()
@@ -49,8 +50,6 @@ def proc(tmp_soup, down_url, category):
 			if (reqeuest_url!=0):
 				print('trying download')
 				download_csv(down_req, category)
-
-
 		else:
 			print('err tag conetents maybe wrong')
 	else:
@@ -68,18 +67,18 @@ if dist_req != 0:
 	soup = BeautifulSoup(dist_req.text, 'lxml') #getting all the html content
 	# look for the csv export tag
 	# id = "cpContent_TopControls1_ddlExport"
-	proc(soup, downurl, "dist")
+	proc(soup, downurl, "District")
 	
 # same with division now
 baseurl = "http://dashboards.toastmasters.org/Division.aspx?id=" # web page to get params for downlaod
 dist_req = reqeuest_url(baseurl,distnum)
 if dist_req != 0: 
 	soup = BeautifulSoup(dist_req.text, 'lxml')
-	proc(soup, downurl, "div")
+	proc(soup, downurl, "Division")
 
 # same with club
 baseurl = "http://dashboards.toastmasters.org/Club.aspx?id=" # web page to get params for downlaod
 dist_req = reqeuest_url(baseurl,distnum)
 if dist_req != 0: 
 	soup = BeautifulSoup(dist_req.text, 'lxml')
-	proc(soup, downurl, "club")
+	proc(soup, downurl, "Club")

@@ -10,8 +10,8 @@ from bs4 import BeautifulSoup
 #global vars
 baseurl = "https://reports2.toastmasters.org/District.cgi?dist=98" # base link for download 
 h = {'user-agent': "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:85.0) Gecko/20100101 Firefox/85.0"} # headers to make the req work
-name_list=["","","club_goal","area_goal","disting_div_goals","disting_area_goals","clubs_need_coach","top10_edu_award"]
-
+name_list=["","","Club_goal","Area_goal","Distinguished_Division_goals","Distinguished_Area_goals","Clubs_need_coach","Top10_Edu_Award"]
+# the above list is the filename list
 
 #get req data 
 def reqeuest_url(base):
@@ -41,10 +41,9 @@ def table_to_csv(table_soup, fname):
 		for row in list_of_rows:
 			writer.writerow(row)
 
-# process the url to get a param
+# process the url to get tables, and send to another function to generate files
 def proc(tmp_soup):
 	tables = tmp_soup.find_all("table")
-	
 	for i in range(len(tables)):
 		if(i>1):
 			table_to_csv(tables[i],name_list[i])
@@ -61,12 +60,13 @@ def proc(tmp_soup):
 					else:
 						list_of_cells.append(text)
 				list_of_rows.append(list_of_cells)
-			with open("t1.csv","w") as op_file:
+			# this is the one table that has a differnt format, so dealt with it differently 
+			with open("District_goal_birds_eye.csv","w") as op_file:
 				writer = csv.writer(op_file)
 				for row in list_of_rows:
 					writer.writerow(row)
-# main code 
 
+# main code 
 # get req
 dist_req = reqeuest_url(baseurl)
 # if get req is succesful

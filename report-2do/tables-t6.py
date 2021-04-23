@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 h = {'user-agent': "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:85.0) Gecko/20100101 Firefox/85.0"}
 baseUrl = "	https://reports2.toastmasters.org/ToDo.cgi?dist="
 distnum = 98
-csv_name = "todo.csv"
+csv_name = "D98_Area_To_Do.csv"
 
 #fns
 #get data for district page given the int district number

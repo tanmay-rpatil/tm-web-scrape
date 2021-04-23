@@ -6,9 +6,8 @@ from bs4 import BeautifulSoup
 # remeber to activate venv when developing "source ./env/bin/activate"
 
 #global vars
-baseurl = "https://reports2.toastmasters.org/D98/D98-2021-01-16.html" # base link add date in the format = " D98-yyyy-mm-dd"
+baseurl = "https://reports2.toastmasters.org/D98/D98-20" # base link add date in the format = " D98-yyyy-mm-dd.html"
 h = {'user-agent': "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:85.0) Gecko/20100101 Firefox/85.0"} # headers to make the req work
-name_list=["","","club_goal","area_goal","disting_div_goals","disting_area_goals","clubs_need_coach","top10_edu_award"]
 
 #get req data 
 def reqeuest_url(base):
@@ -16,10 +15,10 @@ def reqeuest_url(base):
 	r = requests.get(base, headers=h)
 	print(r.url)
 	if (r.status_code==404):
-		print("error: ",r.stataus_code)
+		print("error: ",r.status_code)
 		# quit()
 		return(404)
-	elif (r.status_code!=404):
+	elif (r.status_code!=200):
 		print("error: ",r.status_code)
 		quit()
 		return 0
@@ -53,12 +52,14 @@ def proc(tmp_soup):
 
 
 date  = datetime.datetime.now()
-d = date.strftime("%d")
-d += date.strftime("%m")
-d += date.strftime("%y")
-d = '300321'
+d = ""
+d += date.strftime("%y") + "-"
+d += date.strftime("%m") + "-"
+d += date.strftime("%d") + ".html"
+d = '21-04-22.html'
 # get req
-dist_req = reqeuest_url(baseurl)
+req_url=baseurl+d
+dist_req = reqeuest_url(req_url)
 # if get req is succesful
 if dist_req != 0: 
 	# print(all.headers)
