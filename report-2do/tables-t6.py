@@ -1,4 +1,4 @@
-import requests, csv
+import requests, csv, markdownify
 from bs4 import BeautifulSoup
 # script to fill a csv files with valid html description on club, district etc ... levels
 
@@ -32,19 +32,22 @@ def add_csv(hd,data):
 		tmp_lst.append(distnum)
 		tmp_lst.append('')
 		tmp_lst.append('')
-		tmp_lst.append(data.strip())
+		md_data = markdownify.markdownify(data)
+		tmp_lst.append(md_data.strip())
 	elif (hd.startswith('Division')):
 		tmp_lst.append('Division')
 		tmp_lst.append(distnum)
 		tmp_lst.append(hd[-1:])
 		tmp_lst.append('')
-		tmp_lst.append(data.strip())
+		md_data = markdownify.markdownify(data)
+		tmp_lst.append(md_data.strip())
 	elif (hd.startswith('Area')):
 		tmp_lst.append('Area')
 		tmp_lst.append(distnum)
 		tmp_lst.append(hd[-2:-1])
 		tmp_lst.append(hd[-1:])
-		tmp_lst.append(data.strip())
+		md_data = markdownify.markdownify(data)
+		tmp_lst.append(md_data.strip())
 	with open(csv_name,'a') as op_file:
 		writer = csv.writer(op_file)
 		writer.writerow(tmp_lst)
