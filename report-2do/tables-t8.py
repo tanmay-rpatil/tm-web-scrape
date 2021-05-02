@@ -1,5 +1,5 @@
 #scrape reports2.toastmasters.org for 2 tables into CSV
-import requests,csv
+import requests,csv,datetime
 from bs4 import BeautifulSoup
 # script to fill CSV files as needed
 # remeber to activate venv when developing "source ./env/bin/activate"
@@ -24,7 +24,6 @@ def reqeuest_url(base):
 # save the html table into a csv file
 def table_to_csv(table_soup, fname):
 	fname = fname + ".csv"
-	
 	list_of_rows = []
 	for row in table_soup.findAll("tr"):
 		list_of_cells = []
@@ -34,18 +33,39 @@ def table_to_csv(table_soup, fname):
 		list_of_rows.append(list_of_cells)
 	with open(fname,"w") as op_file:
 		writer = csv.writer(op_file)
+		i = 0
 		for row in list_of_rows:
+			if (row[1]=="98"):
+				with open("global_district_ranks.txt","a") as op_file:
+					if (fname.startswith("20")):
+						op_file.write("rank= "+row[0] +" precent= "+row[2]+"\n")
+						print(("rank= "+row[0] +" precent= "+row[2]+"\n"))
+					else:
+						op_file.write("rank= "+row[0] +" growth= "+row[2]+"\n")
+						print(("rank= "+row[0] +" growth= "+row[2]+"\n"))
+			if (i!=0):
+				row.append(d)
+				row.append("https://reports2.toastmasters.org/PrezExt20.cgi")
+			else:
+				row.append("date")
+				row.append("link")
 			writer.writerow(row)
-
+			i+=1
 # process the url to get a param
 def proc(tmp_soup):
 	table1 = (tmp_soup.find_all("table"))[1]
 	table2 = (tmp_soup.find_all("table"))[2]
 	table_to_csv(table1,"20_plus_members_ranking")
 	table_to_csv(table2,"club_growth_ranking")
-	
+
 
 # main code 
+# get today's date
+date  = datetime.datetime.now()
+d = date.strftime("%d")+"-"
+d += date.strftime("%m")+"-"
+d += date.strftime("%y")
+print(d)
 
 # get req
 dist_req = reqeuest_url(baseurl)
