@@ -38,6 +38,4 @@ with open('DCP_History_report_for_Div.csv', newline='') as i_file:
 				row.append(d)
 				row.append("marshall")
 				output_writer.writerow(row)
-				print("div = " + div)
-
-
+				print("div = " + div)       
