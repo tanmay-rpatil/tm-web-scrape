@@ -6,14 +6,7 @@ stop_sring="\"Educational awards this year\""
 blank_string="\" \""
 
 input_file = open('title.csv', 'r')
-output_file = open('output.csv','w')
-
-# get today's date
-date  = datetime.datetime.now()
-d = date.strftime("%d")+"-"
-d += date.strftime("%m")+"-"
-d += date.strftime("%y")
-print(d)
+output_file = open('club-csv-output.csv','w')
 
 for each in input_file:
     # Python code to create a file
@@ -35,7 +28,6 @@ for each in input_file:
     elif (each.strip() == blank_string.strip()):
         print("blank line")
     elif (writeflag==1):      
-        each=each.strip()+("," + str(d) + "," + "marshall\n") 
         output_file.write(each)
         print("wrting output")
     #else:

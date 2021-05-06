@@ -17,3 +17,15 @@
 | 11  |                                                                                   |                                |                                                                                                                                       |                                     | <ul><li>- [ ] </li></ul> |
 | 12  |                                                                                   |                                |                                                                                                                                       |                                     | <ul><li>- [ ] </li></ul> |
 |     |                                                                                   |                                |                                                                                                                                       |                                     | <ul><li>- [ ] </li></ul> |
+
+
+
+## To Do list
+
+- [] Marshall rename CSV
+
+- [] make entire program single click
+
+- [] make marshall download automated
+
+- [] correct table with two heading rows 

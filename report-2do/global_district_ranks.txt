@@ -1,0 +1,4 @@
+rank= 7 precent= 51.21%
+rank= 3 growth= +14
+rank= 7 precent= 51.21%
+rank= 3 growth= +14

@@ -4,6 +4,7 @@
 # folders to ignore
 env/
 .vscode/
+./final-csv
 
 # files to ignore 
 *.csv
@@ -11,3 +12,4 @@ env/
 *.xls
 *.xlsx
 *.xls*
+*.zip
