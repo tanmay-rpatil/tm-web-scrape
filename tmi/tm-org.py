@@ -43,7 +43,7 @@ def get_distnum():
 		return ( (ip_file.read()).strip() )
 
 def download_csv(req, category):
-	name = str(category)+ '_Performace.csv'
+	name = str(category)+ '.csv'
 	csv_file = open(name, 'wb')
 	csv_file.write(req.content)
 	csv_file.close()
@@ -74,8 +74,8 @@ def proc(tmp_soup, down_url, category):
 def add_date_source(date,source):
 	lst = glob.glob("*.csv")
 	for fname in lst:
-		tmpFile = "mod-"+fname
-		with open(input, "r") as file, open(tmpFile, "w") as outFile:
+		tmpFile = fname[:-4]+"_performance.csv"
+		with open(fname, "r") as file, open(tmpFile, "w") as outFile:
 			reader = csv.reader(file, delimiter=',')
 			writer = csv.writer(outFile, delimiter=',')
 			header = next(reader)
