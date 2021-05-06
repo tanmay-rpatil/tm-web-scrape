@@ -6,8 +6,10 @@ from bs4 import BeautifulSoup
 # remeber to activate venv when developing "source ./env/bin/activate"
 
 #global vars
-baseurl = "https://reports2.toastmasters.org/D98/D98-20" # base link add date in the format = " D98-yyyy-mm-dd.html"
+baseurl = "https://reports2.toastmasters.org/D98/D98-" # base link add date in the format = " yyyy-mm-dd.html"
 h = {'user-agent': "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:85.0) Gecko/20100101 Firefox/85.0"} # headers to make the req work
+
+# get value of district from "district-selection.txt"
 
 #get req data 
 def reqeuest_url(base):
@@ -25,6 +27,16 @@ def reqeuest_url(base):
 	else:
 		print("success: ",r.status_code)
 		return r
+
+#get the current date in the format "yyyy-mm-dd" 
+def get_date():
+	date  = datetime.datetime.now()
+	d = ""
+	d += date.strftime("%Y") + "-" #get year in yyyy format
+	d += date.strftime("%m") + "-" #get month in 0 padded format e.g. 02,03,10,11,12
+	d += date.strftime("%d") #get date in 0 padded format e.g. 02,03,10,11,12
+	d = '2021-04-22' #hardcoding for testing purposes
+	return d
 
 # save the html table into a csv file
 def table_to_csv(table_soup, fname):
@@ -48,15 +60,11 @@ def proc(tmp_soup):
 	for i in range(len(tables)):
 		if(i>1):
 			table_to_csv(tables[i],name_list[i])
+
+
 # main code 
-
-
-date  = datetime.datetime.now()
-d = ""
-d += date.strftime("%y") + "-"
-d += date.strftime("%m") + "-"
-d += date.strftime("%d") + ".html"
-d = '21-04-22.html'
+d = get_date() #get today's date in the required format
+d+=".html"
 # get req
 req_url=baseurl+d
 dist_req = reqeuest_url(req_url)

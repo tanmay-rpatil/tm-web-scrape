@@ -1,13 +1,12 @@
-import requests, csv, markdownify
+import requests, csv, markdownify,datetime
 from bs4 import BeautifulSoup
 # script to fill a csv files with valid html description on club, district etc ... levels
 
 #global vars
 h = {'user-agent': "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:85.0) Gecko/20100101 Firefox/85.0"}
 baseUrl = "	https://reports2.toastmasters.org/ToDo.cgi?dist="
-distnum = 98
 csv_name = "D98_Area_To_Do.csv"
-
+source_link = baseUrl
 #fns
 #get data for district page given the int district number
 def dist_page(num):
@@ -25,7 +24,7 @@ def dist_page(num):
 		print("success: ",r.status_code)
 		return r
 
-def add_csv(hd,data):
+def add_csv(hd,data,distnum,date):
 	tmp_lst=[]
 	if (hd.startswith('District')):
 		tmp_lst.append('District')
@@ -48,25 +47,47 @@ def add_csv(hd,data):
 		tmp_lst.append(hd[-1:])
 		md_data = markdownify.markdownify(data)
 		tmp_lst.append(md_data.strip())
+	tmp_lst.append(date)
+	tmp_lst.append(source_link)
 	with open(csv_name,'a') as op_file:
 		writer = csv.writer(op_file)
 		writer.writerow(tmp_lst)
-		
-def proc(tmp_str):
+
+#get the current date in the format "yyyy-mm-dd" 
+def get_date():
+	date  = datetime.datetime.now()
+	d = ""
+	d += date.strftime("%Y") + "-" #get year in yyyy format
+	d += date.strftime("%m") + "-" #get month in 0 padded format e.g. 02,03,10,11,12
+	d += date.strftime("%d") #get date in 0 padded format e.g. 02,03,10,11,12
+	d = '2021-04-22' #hardcoding for testing purposes
+	print(d) #for debugging
+	return d
+
+#get the district number
+def get_distnum():
+	with open("../dist-num.txt","r") as ip_file:
+		return ( (ip_file.read()).strip() )
+
+
+def proc(tmp_str,distnum,date):
 	tmp_soup = BeautifulSoup(tmp_str, 'lxml')
 	head = tmp_soup.find('h3')
 	# tmp_lst.append(head)
-	add_csv(head.string.strip(),tmp_str)
+	add_csv(head.string.strip(),tmp_str,distnum,date)
 
 
 #main code 
+distnum = get_distnum()
 all = dist_page(distnum)
+source_link += distnum
+date = get_date()
 
 collect = False
 tmp_str=""
 
 # write headings to an op file
-titles = ['Segment','District','Division','Area','Info']
+titles = ['Segment','District','Division','Area','Info','date','link']
 with open(csv_name, 'w') as op_file:
 	writer = csv.writer(op_file)
 	writer.writerow(titles)
@@ -84,7 +105,7 @@ if all != 0:
 				if (tmp_str):
 					#process data here
 					# print(tmp_str)
-					proc(tmp_str)
+					proc(tmp_str,distnum,date)
 				tmp_str=""
 
 			if (collect):
