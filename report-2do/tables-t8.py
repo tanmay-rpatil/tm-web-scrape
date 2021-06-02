@@ -29,13 +29,13 @@ def get_date():
 	d += date.strftime("%Y") + "-" #get year in yyyy format
 	d += date.strftime("%m") + "-" #get month in 0 padded format e.g. 02,03,10,11,12
 	d += date.strftime("%d") #get date in 0 padded format e.g. 02,03,10,11,12
-	d = '2021-04-22' #hardcoding for testing purposes
+	# d = '2021-04-22' #hardcoding for testing purposes
 	print(d) #for debugging
 	return d
 
 # save the html table into a csv file
 def table_to_csv(table_soup, fname, date):
-	fname = fname + ".csv"
+	fname = "../output/"+fname + ".csv"
 	list_of_rows = []
 	for row in table_soup.findAll("tr"):
 		list_of_cells = []

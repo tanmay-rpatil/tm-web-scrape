@@ -22,10 +22,12 @@
 
 ## To Do list
 
-- [] Marshall rename CSV
+- [ ] Marshall rename CSV
 
-- [] make entire program single click
+- [ ] make entire program single click
 
-- [] make marshall download automated
+- [ ] make marshall download automated
 
-- [] correct table with two heading rows 
+- [ ] correct table with two heading rows 
+
+- [ ] Fix issue with dates

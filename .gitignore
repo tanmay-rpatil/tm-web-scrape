@@ -5,8 +5,10 @@
 env/
 .vscode/
 ./final-csv
+./output
 
 # files to ignore 
+./output/*
 *.csv
 *.html
 *.xls

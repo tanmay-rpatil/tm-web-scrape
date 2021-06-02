@@ -34,7 +34,7 @@ def get_date():
 	d += date.strftime("%Y") + "-" #get year in yyyy format
 	d += date.strftime("%m") + "-" #get month in 0 padded format e.g. 02,03,10,11,12
 	d += date.strftime("%d") #get date in 0 padded format e.g. 02,03,10,11,12
-	d = '2021-04-22' #hardcoding for testing purposes
+	# d = '2021-04-22' #hardcoding for testing purposes
 	print(d) #for debugging
 	return d
 
@@ -45,7 +45,7 @@ def get_distnum():
 
 # save the html table into a csv file
 def table_to_csv(table_soup, fname,date):
-	fname = fname + ".csv"
+	fname = "../output/"+fname + ".csv"
 	list_of_rows = []
 	for row in table_soup.findAll("tr"):
 		list_of_cells = []
@@ -86,7 +86,7 @@ def proc(tmp_soup,date):
 						list_of_cells.append(text)
 				list_of_rows.append(list_of_cells)
 			# this is the one table that has a differnt format, so dealt with it differently 
-			with open("District_goal_birds_eye.csv","w") as op_file:
+			with open("../output/District_goal_birds_eye.csv","w") as op_file:
 				writer = csv.writer(op_file)
 				i=0
 				for row in list_of_rows:

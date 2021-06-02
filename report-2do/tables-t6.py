@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 #global vars
 h = {'user-agent': "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:85.0) Gecko/20100101 Firefox/85.0"}
 baseUrl = "	https://reports2.toastmasters.org/ToDo.cgi?dist="
-csv_name = "D98_Area_To_Do.csv"
+csv_name = "../output/D98_Area_To_Do.csv"
 source_link = baseUrl
 #fns
 #get data for district page given the int district number
@@ -60,7 +60,7 @@ def get_date():
 	d += date.strftime("%Y") + "-" #get year in yyyy format
 	d += date.strftime("%m") + "-" #get month in 0 padded format e.g. 02,03,10,11,12
 	d += date.strftime("%d") #get date in 0 padded format e.g. 02,03,10,11,12
-	d = '2021-04-22' #hardcoding for testing purposes
+	# d = '2021-04-22' #hardcoding for testing purposes
 	print(d) #for debugging
 	return d
 

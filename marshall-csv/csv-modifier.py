@@ -6,17 +6,20 @@ def get_date():
 	d += date.strftime("%Y") + "-" #get year in yyyy format
 	d += date.strftime("%m") + "-" #get month in 0 padded format e.g. 02,03,10,11,12
 	d += date.strftime("%d") #get date in 0 padded format e.g. 02,03,10,11,12
-	d = '2021-04-22' #hardcoding for testing purposes
+	# d = '2021-04-22' #hardcoding for testing purposes
 	print(d) #for debugging
 	return d
 
 def add_date_source(date,map_src):
 	lst = glob.glob("*.csv")
+	print(lst)
 	for fname in lst:
 		if( not (fname in map_src.keys())):
 			continue #if unrequired file.
 		tmpFile = fname[:-4]+"_output_final.csv"
+		print(fname)
 		with open(fname, "r") as file, open(tmpFile, "w") as outFile:
+			print(fname)
 			reader = csv.reader(file, delimiter=',')
 			writer = csv.writer(outFile, delimiter=',')
 			header = next(reader)

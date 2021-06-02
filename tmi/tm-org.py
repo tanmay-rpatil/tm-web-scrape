@@ -33,7 +33,7 @@ def get_date():
 	d += date.strftime("%Y") + "-" #get year in yyyy format
 	d += date.strftime("%m") + "-" #get month in 0 padded format e.g. 02,03,10,11,12
 	d += date.strftime("%d") #get date in 0 padded format e.g. 02,03,10,11,12
-	d = '2021-04-22' #hardcoding for testing purposes
+	# d = '2021-04-22' #hardcoding for testing purposes
 	print(d) #for debugging
 	return d
 
@@ -74,7 +74,7 @@ def proc(tmp_soup, down_url, category):
 def add_date_source(date,source):
 	lst = glob.glob("*.csv")
 	for fname in lst:
-		tmpFile = fname[:-4]+"_performance.csv"
+		tmpFile = '../output/'+ fname[:-4]+"_performance.csv"
 		with open(fname, "r") as file, open(tmpFile, "w") as outFile:
 			reader = csv.reader(file, delimiter=',')
 			writer = csv.writer(outFile, delimiter=',')
