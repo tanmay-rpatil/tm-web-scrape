@@ -36,7 +36,7 @@ chmod +x ./run.sh
 
 - [ ] Marshall rename CSV
 
-- [ x ] make entire program single click
+- [x] make entire program single click
 
 - [ ] make marshall download automated
 
