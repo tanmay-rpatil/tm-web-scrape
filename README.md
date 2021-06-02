@@ -1,5 +1,17 @@
 # Web Scraping Tools for ToastMasters Websites
 
+## To run in one go (Bash shell scrip)
+
+```bash
+#give permission to execute the run.sh script
+chmod +x ./run.sh
+
+#execute it 
+./run.sh
+
+```
+
+
 ## Task List and Current Progress
 
 | #   | Name,Link                                                                         | Task                           | CSV-names                                                                                                                             | Notes                               | Status                   |
