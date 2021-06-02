@@ -1,6 +1,6 @@
 # Web Scraping Tools for ToastMasters Websites
 
-## To run in one go (Bash shell scrip)
+## To run in one go (Bash shell script)
 
 ```bash
 #give permission to execute the run.sh script
@@ -36,7 +36,7 @@ chmod +x ./run.sh
 
 - [ ] Marshall rename CSV
 
-- [ ] make entire program single click
+- [ x ] make entire program single click
 
 - [ ] make marshall download automated
 
