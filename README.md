@@ -2,15 +2,23 @@
 
 ## To run in one go (Bash shell script)
 
+### Note 
+- These are instructions for bash shell
+- These will generate all the CSVs except for the marshall sources
+- For Marshall, first download the CSVs from marshalls website, then execute each of the python files as ``` python3 ./cat-csv-cleanup.py ``` for all cleanups. Finally run the ``` csv-modifier.py ```  file.
+
 ```bash
+# clone this dir
+git clone https://github.com/tanmay-rpatil/tm-web-scrape.git
+
+# cd into the repo
+cd ./tm-web-scrape
 #give permission to execute the run.sh script
 chmod +x ./run.sh
 
 #execute it 
 ./run.sh
-
 ```
-
 
 ## Task List and Current Progress
 
