@@ -3,11 +3,15 @@
 ## To run in one go (Bash shell script)
 
 ### Note 
+- First install Python3
 - These are instructions for bash shell
 - These will generate all the CSVs except for the marshall sources
-- For Marshall, first download the CSVs from marshalls website, then execute each of the python files as ``` python3 ./cat-csv-cleanup.py ``` for all cleanups. Finally run the ``` csv-modifier.py ```  file.
+- For Marshall, follow the intructions after this
 
 ```bash
+# install required libraries from the requirements.txt file
+pip install -r requirements.txt
+
 # clone this dir
 git clone https://github.com/tanmay-rpatil/tm-web-scrape.git
 
@@ -19,6 +23,25 @@ chmod +x ./run.sh
 #execute it 
 ./run.sh
 ```
+
+### Marhsall
+
+Download each of the following CSVs into marshalls-csv folder
+
+- https://marshalls.org/tmtools/DCP_Hist.cgi?club=&dist=98&div=&area=&mon=0
+- https://marshalls.org/tmtools/DCP_Hist.cgi?club=&dist=98&div=&area=&clubview=on&mon=0
+- http://marshalls.org/tmtools/DCP_Hist.cgi?club=&dist=98&div=&area=&divview=on&mon=0
+- http://marshalls.org/tmtools/DCP_Hist.cgi?club=&dist=98&div=&area=&areaview=on&mon=0
+
+```bash
+# run all the pyhton scripts from marshalls-csv fodler
+python3 ./area-csv-cleanup.py
+python3 ./club-csv-cleanup.py
+python3 ./dist-csv-cleanup.py
+python3 ./div-csv-cleanup.py
+python3 ./csv-modifier.py
+```
+
 
 ## Task List and Current Progress
 
