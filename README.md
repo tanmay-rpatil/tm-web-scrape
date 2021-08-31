@@ -6,7 +6,6 @@
 - First install Python3
 - These are instructions for bash shell
 - These will generate all the CSVs except for the marshall sources
-- For Marshall, follow the intructions after this
 
 ```bash
 # install required libraries from the requirements.txt file
@@ -24,22 +23,25 @@ chmod +x ./run.sh
 ./run.sh
 ```
 
-### Marhsall
+### Marshalls
 
 Download each of the following CSVs into marshalls-csv folder
 
-- https://marshalls.org/tmtools/DCP_Hist.cgi?club=&dist=98&div=&area=&mon=0
-- https://marshalls.org/tmtools/DCP_Hist.cgi?club=&dist=98&div=&area=&clubview=on&mon=0
-- http://marshalls.org/tmtools/DCP_Hist.cgi?club=&dist=98&div=&area=&divview=on&mon=0
-- http://marshalls.org/tmtools/DCP_Hist.cgi?club=&dist=98&div=&area=&areaview=on&mon=0
+- https://marshalls.org/tmtools/DCP_Hist.cgi?club=&dist=98&div=&area=&mon=0 as DCP_History_report_for_Div.csv
+- https://marshalls.org/tmtools/DCP_Hist.cgi?club=&dist=98&div=&area=&clubview=on&mon=0 DCP_History_report_for_Club.csv
+- http://marshalls.org/tmtools/DCP_Hist.cgi?club=&dist=98&div=&area=&divview=on&mon=0 as DCP_History_report_for_Div.csv
+- http://marshalls.org/tmtools/DCP_Hist.cgi?club=&dist=98&div=&area=&areaview=on&mon=0 as DCP_History_report_for_Area.csv
 
 ```bash
 # run all the pyhton scripts from marshalls-csv fodler
+# cd into marhsall-csv folder
 python3 ./area-csv-cleanup.py
 python3 ./club-csv-cleanup.py
 python3 ./dist-csv-cleanup.py
 python3 ./div-csv-cleanup.py
 python3 ./csv-modifier.py
+
+# will get (csv-name)_output_final.csv for each of the files.
 ```
 
 
@@ -65,12 +67,12 @@ python3 ./csv-modifier.py
 
 ## To Do list
 
-- [ ] Marshall rename CSV
+- [X] Marshall rename CSV
 
 - [x] make entire program single click
 
-- [ ] make marshall download automated
+- [] make marshall download automated
 
-- [ ] correct table with two heading rows 
+- [X] correct table with two heading rows 
 
-- [ ] Fix issue with dates
+- [X] Fix issue with dates
