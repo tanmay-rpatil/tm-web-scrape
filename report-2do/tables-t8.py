@@ -35,7 +35,7 @@ def get_date():
 
 # save the html table into a csv file
 def table_to_csv(table_soup, fname, date):
-	fname = "../output/"+fname + ".csv"
+	fname = "../output/tmi/"+fname + ".csv"
 	list_of_rows = []
 	for row in table_soup.findAll("tr"):
 		list_of_cells = []
