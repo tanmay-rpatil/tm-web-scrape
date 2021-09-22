@@ -11,12 +11,12 @@ def get_date():
 	return d
 
 def add_date_source(date,map_src):
-	lst = glob.glob("*.csv")
+	lst = glob.glob("*_output.csv")
 	print(lst)
 	for fname in lst:
 		if( not (fname in map_src.keys())):
 			continue #if unrequired file.
-		tmpFile = fname[:-4]+"_output_final.csv"
+		tmpFile = "../output/marshall/" + fname[:-11] + 	".csv"
 		print(fname)
 		with open(fname, "r") as file, open(tmpFile, "w") as outFile:
 			print(fname)
@@ -32,7 +32,7 @@ def add_date_source(date,map_src):
 				row.append(date)
 				row.append(source)
 				writer.writerow(row)
-map_src = { "area_output.csv":"https://www.marshalls.org/tmtools/DCP_Hist.cgi?club=&dist=98&div=&area=&areaview=on&mon=0","club_output.csv":"https://www.marshalls.org/tmtools/DCP_Hist.cgi?club=&dist=98&div=&area=&clubview=on&mon=0","dist_output.csv":"https://www.marshalls.org/tmtools/DCP_Hist.cgi?club=&dist=98&div=&area=&mon=0","getclubs-D98.csv":"https://www.marshalls.org/tmtools/getclubs.cgi?dist=98&Go=getclubs","div_output.csv":"https://www.marshalls.org/tmtools/DCP_Hist.cgi?club=&dist=98&div=&area=&divview=on&mon=0",}
+map_src = { "DCP_History_report_for_Area_output.csv":"https://www.marshalls.org/tmtools/DCP_Hist.cgi?club=&dist=98&div=&area=&areaview=on&mon=0","DCP_History_report_for_Club_output.csv":"https://www.marshalls.org/tmtools/DCP_Hist.cgi?club=&dist=98&div=&area=&clubview=on&mon=0","DCP_History_report_for_Dist_output.csv":"https://www.marshalls.org/tmtools/DCP_Hist.cgi?club=&dist=98&div=&area=&mon=0","getclubs-D98_output.csv":"https://www.marshalls.org/tmtools/getclubs.cgi?dist=98&Go=getclubs","DCP_History_report_for_Div_output.csv":"https://www.marshalls.org/tmtools/DCP_Hist.cgi?club=&dist=98&div=&area=&divview=on&mon=0",}
 
 
 add_date_source(get_date(),map_src)

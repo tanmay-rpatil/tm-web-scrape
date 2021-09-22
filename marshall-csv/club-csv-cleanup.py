@@ -4,16 +4,16 @@ writeflag=0
 start_string="\"DCP Goals: This month in past years\""
 stop_sring="\"Educational awards this year\""
 blank_string="\" \""
-
+csv_name = 'DCP_History_report_for_Club.csv'
 input_file = open('title.csv', 'r')
-output_file = open('club-csv-output.csv','w')
+output_file = open(csv_name[:-4]+'_output.csv','w')
 
 for each in input_file:
     # Python code to create a file
      output_file.write(each)
 input_file.close()
 
-input_file = open('DCP_History_report_for_Club_1.csv', 'r')
+input_file = open(csv_name, 'r')
 for each in input_file:
     # Python code to create a file
     #print(each)
@@ -37,5 +37,4 @@ print(stop_sring)
 
 output_file.close()
 input_file.close()
-
 

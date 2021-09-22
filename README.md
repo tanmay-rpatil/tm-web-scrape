@@ -26,8 +26,7 @@ chmod +x ./run.sh
 ### Marshalls
 
 Download each of the following CSVs into marshalls-csv folder
-
-- https://marshalls.org/tmtools/DCP_Hist.cgi?club=&dist=98&div=&area=&mon=0 as DCP_History_report_for_Div.csv
+- https://marshalls.org/tmtools/DCP_Hist.cgi?club=&dist=98&div=&area=&mon=0 as DCP_History_report_for_Dist.csv
 - https://marshalls.org/tmtools/DCP_Hist.cgi?club=&dist=98&div=&area=&clubview=on&mon=0 DCP_History_report_for_Club.csv
 - http://marshalls.org/tmtools/DCP_Hist.cgi?club=&dist=98&div=&area=&divview=on&mon=0 as DCP_History_report_for_Div.csv
 - http://marshalls.org/tmtools/DCP_Hist.cgi?club=&dist=98&div=&area=&areaview=on&mon=0 as DCP_History_report_for_Area.csv
