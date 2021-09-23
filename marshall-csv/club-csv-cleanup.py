@@ -6,7 +6,7 @@ stop_sring="\"Educational awards this year\""
 blank_string="\" \""
 csv_name = 'DCP_History_report_for_Club.csv'
 input_file = open('title.csv', 'r')
-output_file = open(csv_name[:-4]+'_output.csv','w')
+output_file = open(csv_name[:-4]+'_output.csv','w',newline='')
 
 for each in input_file:
     # Python code to create a file

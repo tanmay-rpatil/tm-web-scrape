@@ -1,7 +1,7 @@
 import csv,datetime
 
 csv_name = 'DCP_History_report_for_Area.csv'
-output_file = open(csv_name[:-4]+'_output.csv','w')
+output_file = open(csv_name[:-4]+'_output.csv','w',newline='')
 write = True
 area=''
 div=''

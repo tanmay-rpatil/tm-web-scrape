@@ -74,8 +74,8 @@ def proc(tmp_soup, down_url, category):
 def add_date_source(date,source):
 	lst = glob.glob("*.csv")
 	for fname in lst:
-		tmpFile = '../output/'+ fname[:-4]+"_performance.csv"
-		with open(fname, "r") as file, open(tmpFile, "w") as outFile:
+		tmpFile = '../output/tmi/'+ fname[:-4]+"_performance.csv"
+		with open(fname, "r") as file, open(tmpFile, "w",newline='') as outFile:
 			reader = csv.reader(file, delimiter=',')
 			writer = csv.writer(outFile, delimiter=',')
 			header = next(reader)

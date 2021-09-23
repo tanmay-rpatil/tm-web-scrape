@@ -18,7 +18,7 @@ def add_date_source(date,map_src):
 			continue #if unrequired file.
 		tmpFile = "../output/marshall/" + fname[:-11] + 	".csv"
 		print(fname)
-		with open(fname, "r") as file, open(tmpFile, "w") as outFile:
+		with open(fname, "r") as file, open(tmpFile, "w",newline='') as outFile:
 			print(fname)
 			reader = csv.reader(file, delimiter=',')
 			writer = csv.writer(outFile, delimiter=',')

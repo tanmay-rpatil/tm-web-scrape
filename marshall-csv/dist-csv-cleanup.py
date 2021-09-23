@@ -1,5 +1,5 @@
 csv_name = 'DCP_History_report_for_Dist.csv'
-output_file = open(csv_name[:-4]+'_output.csv','w')
+output_file = open(csv_name[:-4]+'_output.csv','w',newline='')
 # output_file = open('dist_output.csv','w')
 
 input_file = open(csv_name, 'r')
