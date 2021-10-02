@@ -43,12 +43,12 @@ def table_to_csv(table_soup, fname, date):
 			text = cell.text
 			list_of_cells.append(text.strip())
 		list_of_rows.append(list_of_cells)
-	with open(fname,"w") as op_file:
+	with open(fname,"w", newline='') as op_file:
 		writer = csv.writer(op_file)
 		i = 0
 		for row in list_of_rows:
 			if (row[1]=="98"):
-				with open("global_district_ranks.txt","a") as op_file2:
+				with open("global_district_ranks.txt","a", newline='') as op_file2:
 					if (fname.startswith("20")):
 						op_file2.write("rank= "+row[0] +" precent= "+row[2]+"\n")
 						print(("rank= "+row[0] +" precent= "+row[2]+"\n"))

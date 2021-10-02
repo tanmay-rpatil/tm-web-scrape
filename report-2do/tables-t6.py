@@ -49,7 +49,7 @@ def add_csv(hd,data,distnum,date):
 		tmp_lst.append(md_data.strip())
 	tmp_lst.append(date)
 	tmp_lst.append(source_link)
-	with open(csv_name,'a') as op_file:
+	with open(csv_name,'a', newline='') as op_file:
 		writer = csv.writer(op_file)
 		writer.writerow(tmp_lst)
 
@@ -66,7 +66,7 @@ def get_date():
 
 #get the district number
 def get_distnum():
-	with open("../dist-num.txt","r") as ip_file:
+	with open("../dist-num.txt","r",newline='') as ip_file:
 		return ( (ip_file.read()).strip() )
 
 
@@ -88,7 +88,7 @@ tmp_str=""
 
 # write headings to an op file
 titles = ['Segment','District','Division','Area','Info','date','link']
-with open(csv_name, 'w') as op_file:
+with open(csv_name, 'w', newline='') as op_file:
 	writer = csv.writer(op_file)
 	writer.writerow(titles)
 

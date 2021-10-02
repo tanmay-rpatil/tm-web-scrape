@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 baseurl = "https://reports2.toastmasters.org/District.cgi?dist=" # base link for download at the end add distnum 
 h = {'user-agent': "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:85.0) Gecko/20100101 Firefox/85.0"} # headers to make the req work
 name_list=["","","Club_goal","Area_goal","Distinguished_Division_goals","Distinguished_Area_goals","Clubs_need_coach","Top10_Edu_Award"]
-source_link= "https://reports2.toastmasters.org/District.cgi?dist=98"
+source_link= "https://reports2.toastmasters.org/District.cgi?9=98"
 # the above list is the filename list
 
 #get req data 
@@ -53,7 +53,7 @@ def table_to_csv(table_soup, fname,date):
 			text = cell.text
 			list_of_cells.append(text.strip())
 		list_of_rows.append(list_of_cells)
-	with open(fname,"w") as op_file:
+	with open(fname,"w", newline='') as op_file:
 		writer = csv.writer(op_file)
 		i=0
 		for row in list_of_rows:
@@ -65,14 +65,48 @@ def table_to_csv(table_soup, fname,date):
 				row.append("link")
 			writer.writerow(row)
 			i+=1
-	
+
+def table_to_csv_custom_head(table_soup, fname,date,header1,header2):
+	fname = "../output/tmi/"+fname + ".csv"
+	list_of_rows = []
+	list_of_rows.append(header1)
+	list_of_rows.append(header2)
+	# print(list_of_rows)
+	for row in table_soup.findAll("tr"):
+		list_of_cells = []
+		for cell in row.findAll(["td"]):
+			text = cell.text
+			list_of_cells.append(text.strip())
+		if (list_of_cells):
+			list_of_rows.append(list_of_cells)
+	with open(fname,"w", newline='') as op_file:
+		writer = csv.writer(op_file)
+		i=0
+		for row in list_of_rows:
+			print(row)
+			if (i>1):
+				row.append(date)
+				row.append(source_link)
+			writer.writerow(row)
+			i+=1
+
 # process the url to get tables, and send to another function to generate files
 def proc(tmp_soup,date):
 	tables = tmp_soup.find_all("table")
 	for i in range(len(tables)):
-		if(i>1):
+		if(i==4): #dist_div_goals has extra headers
+			print(name_list[i])
+			h1 = ["Division","Distinguished Division Goals","Distinguished Division Goals","Distinguished Division Goals","SelectDist.Div'nAdd'lGoal","Pres. Dist. DivisionAdd'l Goals","Pres. Dist. DivisionAdd'l Goals","Overall Score","date","link"]
+			h2 = ["Division","Paid clubs","Dist. clubs","Score","Dist. clubs","Paid clubs","Dist. clubs","Overall Score","date","link"]
+			table_to_csv_custom_head(tables[i],name_list[i],date,h1,h2)
+		elif(i==5): #dist_area_goals has extra headers
+			print(name_list[i])
+			h1 = ["Area","QualifyingRequirements","QualifyingRequirements","Distinguished Area Goals","Distinguished Area Goals","Distinguished Area Goals","Select Dist. Area Add'l Goal","Pres. Dist. Area Add'l Goal","Overall Score","date","link"]
+			h2 = ["Area","July-Oct. visits","Jan.-May visits","Paid clubs","Dist. clubs","Score","Dist. clubs","Paid clubs","Overall Score","date","link"]
+			table_to_csv_custom_head(tables[i],name_list[i],date,h1,h2)
+		elif(i>1):
 			table_to_csv(tables[i],name_list[i],date)
-		if(i==0): #the special case to deal with
+		elif(i==0): #the special case to deal with
 			print("filler")
 			table_soup=tables[i]
 			list_of_rows = []
@@ -86,7 +120,7 @@ def proc(tmp_soup,date):
 						list_of_cells.append(text)
 				list_of_rows.append(list_of_cells)
 			# this is the one table that has a differnt format, so dealt with it differently 
-			with open("../output/tmi/District_goal_birds_eye.csv","w") as op_file:
+			with open("../output/tmi/District_goal_birds_eye.csv","w", newline='') as op_file:
 				writer = csv.writer(op_file)
 				i=0
 				for row in list_of_rows:
